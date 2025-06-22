@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import "tailwindcss";
+@plugin '@midudev/tailwind-animations';
+
+@theme{
+    --color-primary: #0c3148;
+    --color-secondary: #005b8a;
+    --color-accent: #d72828;
+    --color-accentuated: #f07f11;
+    --color-sun: #fcc009;
+    --color-sunlight: #fbbe49;
+    --color-background: #eae2b7;
+
+    --font-display: 'American Purpose', sans-serif;
+    --font-body: 'Fredoka', sans-serif;
+
+}
+
+@font-face {
+    font-family: 'American Purpose';
+    src: url('/fonts/AmericanPurpose.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-stroke {
+    -webkit-text-stroke: 0.25px var(--color-primary);
+}
+
+.gdesc-inner{
+    background-color: var(--color-background);
+}
+
+.bg-footer{
+    background-image: url('/fire-footer.webp');
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+@keyframes expandX {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.animate-expand {
+  animation: expandX 1.5s ease-out forwards;
+}

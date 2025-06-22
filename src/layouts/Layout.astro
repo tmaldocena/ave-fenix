@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<!-- Pantalla de carga con logo y guiño -->
+		<div
+			id="loader"
+			class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-800"
+		>
+			<img src="/logotipo.svg" alt="Logo" class="relative w-64" />
+			<div class="relative w-40 h-40">
+				<img
+					src="/logo-principal.svg"
+					alt="Logo"
+					class="w-full h-full"
+				/>
+			</div>
+		</div>
+		<slot />
+		<div
+			id="scrollButton"
+			class="bg-sunlight hover:bg-sun cursor-pointer text-primary font-semibold font-body px-2 py-1 rounded-2xl fixed z-50 hidden opacity-0 bottom-6 right-6 transition-opacity duration-300 transform translate-y-2"
+		>
+			<button class="cursor-pointer">Volver arriba</button>
+		</div>
+	</body>
+	<script type="module" src="/src/scripts/glightbox.js"></script>
+	<script>
+		window.addEventListener("load", () => {
+			const loader = document.getElementById("loader");
+			if (loader) {
+				loader.style.opacity = "0";
+				loader.style.pointerEvents = "none";
+				setTimeout(() => loader.remove(), 700);
+			}
+		});
+	</script>
+	<script>
+		document.addEventListener("scroll", () => {
+			const scrollButton = document.getElementById("scrollButton");
+			if (window.scrollY > 100) {
+				scrollButton?.classList.remove(
+					"hidden",
+					"opacity-0",
+					"translate-y-2",
+				);
+				scrollButton?.classList.add("opacity-100", "translate-y-0");
+			} else {
+				scrollButton?.classList.add("opacity-0", "translate-y-2");
+				scrollButton?.classList.remove("opacity-100", "translate-y-0");
+				setTimeout(() => {
+					if (window.scrollY <= 100) {
+						scrollButton?.classList.add("hidden");
+					}
+				}, 300);
+			}
+		});
+
+		const scrollButtonElem = document.getElementById("scrollButton");
+		if (scrollButtonElem) {
+			scrollButtonElem.addEventListener("click", () => {
+				window.scrollTo({
+					top: 0,
+					behavior: "smooth",
+				});
+			});
+		}
+	</script>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
