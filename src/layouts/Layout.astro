@@ -31,7 +31,17 @@
 			<button class="cursor-pointer">Volver arriba</button>
 		</div>
 	</body>
-	
+	<script type="module" src="/src/scripts/glightbox.js"></script>
+	<script>
+		window.addEventListener("load", () => {
+			const loader = document.getElementById("loader");
+			if (loader) {
+				loader.style.opacity = "0";
+				loader.style.pointerEvents = "none";
+				setTimeout(() => loader.remove(), 700);
+			}
+		});
+	</script>
 	<script>
 		document.addEventListener("scroll", () => {
 			const scrollButton = document.getElementById("scrollButton");
