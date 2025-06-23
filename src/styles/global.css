@@ -25,7 +25,7 @@
 }
 
 .font-stroke {
-    -webkit-text-stroke: 0.25px var(--color-primary);
+    -webkit-text-stroke: 0.30px var(--color-primary);
 }
 
 .gdesc-inner{
